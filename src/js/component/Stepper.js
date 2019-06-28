@@ -86,7 +86,6 @@ function getStepContent(stepIndex) {
 
 function HorizontalLabelPositionBelowStepper(props) {
     const { clickFinish, changeStep, error, step } = props
-    console.log(props)
     const classes = useStyles();
     const steps = getSteps();
 
