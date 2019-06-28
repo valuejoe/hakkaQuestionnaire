@@ -57,6 +57,7 @@ function RadioButtons(props) {
 
                 <Grid item xs={1}>
                     <Radio
+                        color='primary'
                         id='a'
                         checked={selectedValue === 'a'}
                         onChange={handleChange}

@@ -1,11 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Stepper, Step, StepLabel, Button, Typography, Paper } from '@material-ui/core';
+import { Stepper, Step, StepLabel, Button, Typography, Paper, Box } from '@material-ui/core';
+import { ChildCare } from '@material-ui/icons';
 import Introduction from './Introduction';
 import Radio from './Radio';
 import ClientData from './ClientData';
 import { connect } from 'react-redux';
 import { clickFinish, changeStep } from '../store/action';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,14 +28,14 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-end',
         marginRight: theme.spacing(1),
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(5),
     },
     unfinished: {
         [theme.breakpoints.down('xs')]: {
-            padding: theme.spacing(1),
+            padding: theme.spacing(5),
             margin: theme.spacing(0),
         },
-        marginTop: theme.spacing(0),
+        marginTop: theme.spacing(5),
         marginBottom: theme.spacing(6),
         padding: theme.spacing(3),
     },
@@ -48,6 +50,9 @@ const useStyles = makeStyles(theme => ({
     finished: {
         marginTop: theme.spacing(5),
         paddingBottom: '200px'
+    },
+    title: {
+        marginBottom: theme.spacing(6),
     }
 }));
 
@@ -114,14 +119,25 @@ function HorizontalLabelPositionBelowStepper(props) {
                     {step === 4 ? (
                         <div className={classes.finished}>
                             <Typography align='center' variant='h6'>
-                                感謝您填寫我們的問卷調查
+                                <Box fontWeight="fontWeightBold">
+                                    感謝您填寫我們的問卷調查  
+                                </Box>
+                            </Typography>
+                            <Typography align='center'>
+                                <ChildCare color="primary" className={classes.icon} />
                             </Typography>
                         </div>
                     ) : (
                             <div className={classes.unfinished}>
-                                <Typography align='center' variant="h6">
-                                    {step === 1 || step === 2 ? '客家文化對您的意義是什麼？' : ''}
-                                </Typography>
+                                {step === 1 || step === 2 ? (
+                                    <Typography align='center' variant="h6" className={classes.title}>
+                                        <Box fontWeight="fontWeightBold">
+                                            客家文化對您的意義是什麼？
+                                        </Box>
+                                    </Typography>
+                                ) : ('')}
+
+
                                 {getStepContent(step)}
                                 {step !== 0 && error ? (
                                     <Typography align='center' variant="h6" className={classes.error}>
